@@ -6,7 +6,9 @@ function EmployeeDashboard({ department, windowNumber, departmentName }) {
 
   const getQueue = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/queue");
+      const response = await fetch(
+        "https://queueing-system-eko1.onrender.com/api/queue",
+      );
 
       const data = await response.json();
 
@@ -20,15 +22,18 @@ function EmployeeDashboard({ department, windowNumber, departmentName }) {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/queue/next", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://queueing-system-eko1.onrender.com/api/queue/next",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            department: department,
+          }),
         },
-        body: JSON.stringify({
-          department: department,
-        }),
-      });
+      );
 
       const data = await response.json();
 
@@ -51,15 +56,18 @@ function EmployeeDashboard({ department, windowNumber, departmentName }) {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/queue/complete", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://queueing-system-eko1.onrender.com/api/queue/complete",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            department: department,
+          }),
         },
-        body: JSON.stringify({
-          department: department,
-        }),
-      });
+      );
 
       const data = await response.json();
 

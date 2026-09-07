@@ -12,7 +12,7 @@ function QueueStatusPage() {
     const getStatus = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/queue/${queueNumber}`,
+          `https://queueing-system-eko1.onrender.com/api/queue/${queueNumber}`,
         );
 
         const data = await response.json();

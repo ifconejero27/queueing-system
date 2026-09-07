@@ -16,18 +16,21 @@ function CustomerPage() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/queue", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://queueing-system-eko1.onrender.com/api/queue",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            studentNumber,
+            department,
+            purpose,
+          }),
         },
-        body: JSON.stringify({
-          name,
-          studentNumber,
-          department,
-          purpose,
-        }),
-      });
+      );
 
       const data = await response.json();
 
