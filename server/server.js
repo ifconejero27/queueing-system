@@ -7,10 +7,8 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// Temporary queue storage
 let queue = [];
 
-// Official departments
 const departments = {
   CCS: "College of Computer Studies",
   CTE: "College of Teacher Education",
@@ -19,12 +17,10 @@ const departments = {
   CBA: "College of Business and Accountancy",
 };
 
-// Get all customers
 app.get("/api/queue", (req, res) => {
   res.json(queue);
 });
 
-// Get the status of a specific student
 app.get("/api/queue/:queueNumber", (req, res) => {
   const { queueNumber } = req.params;
 
@@ -62,25 +58,21 @@ app.get("/api/queue/:queueNumber", (req, res) => {
   });
 });
 
-// Register a new student
 app.post("/api/queue", (req, res) => {
   const { name, studentNumber, department, purpose } = req.body;
 
-  // Validate required fields
   if (!name || !studentNumber || !department || !purpose) {
     return res.status(400).json({
       message: "Name, student number, department, and purpose are required.",
     });
   }
 
-  // Check if department is valid
   if (!departments[department]) {
     return res.status(400).json({
       message: "Invalid department.",
     });
   }
 
-  // Find the last queue number for this department
   const departmentQueue = queue.filter(
     (student) => student.department === department,
   );
@@ -103,7 +95,6 @@ app.post("/api/queue", (req, res) => {
   res.status(201).json(student);
 });
 
-// Call the next student for a department
 app.post("/api/queue/next", (req, res) => {
   const { department } = req.body;
 
@@ -113,7 +104,6 @@ app.post("/api/queue/next", (req, res) => {
     });
   }
 
-  // Check if there is already a student being served
   const currentStudent = queue.find(
     (student) =>
       student.department === department && student.status === "SERVING",
@@ -125,7 +115,6 @@ app.post("/api/queue/next", (req, res) => {
     });
   }
 
-  // Find the next waiting student
   const nextStudent = queue.find(
     (student) =>
       student.department === department && student.status === "WAITING",
@@ -142,7 +131,6 @@ app.post("/api/queue/next", (req, res) => {
   res.json(nextStudent);
 });
 
-// Complete the current student
 app.post("/api/queue/complete", (req, res) => {
   const { department } = req.body;
 
