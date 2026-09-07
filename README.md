@@ -72,8 +72,6 @@ The system demonstrates frontend development, REST API development, API consumpt
 
 ## Queue Status
 
-Students can have the following queue statuses:
-
 | Status | Description |
 |--------|-------------|
 | WAITING | Student is waiting in the department queue |
@@ -96,6 +94,10 @@ Students can have the following queue statuses:
 - Express.js
 - REST API
 - JSON
+
+### Deployment
+- Vercel
+- Render
 
 ### Development
 - Visual Studio Code
@@ -154,3 +156,15 @@ Students can view:
 | CCJE | ccje | 1234 |
 | CAS | cas | 1234 |
 | CBA | cba | 1234 |
+
+---
+
+## Live Demo
+
+### Main Application
+
+[University Registrar Queueing System](https://queueing-system-7e42-kohl.vercel.app/)
+
+### Public Queue Display
+
+[Public Queue Display](https://queueing-system-7e42-kohl.vercel.app/display)
